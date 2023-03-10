@@ -1,1 +1,6 @@
 dist/
+
+# Don't commit vendored depencencies for now
+vendor/
+
+.vscode/

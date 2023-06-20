@@ -1,6 +1,7 @@
 package fsquota
 
 import (
+	"sync"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -10,6 +11,7 @@ import (
 func TestLimit_GetHard(t *testing.T) {
 	t.Run("Nil", func(t *testing.T) {
 		l := &Limit{
+			mu:   new(sync.Mutex),
 			hard: nil,
 		}
 		assert.EqualValues(t, 0, l.GetHard())
@@ -17,6 +19,7 @@ func TestLimit_GetHard(t *testing.T) {
 
 	t.Run("NotNil", func(t *testing.T) {
 		l := &Limit{
+			mu:   new(sync.Mutex),
 			hard: new(uint64),
 		}
 		*l.hard = 16
@@ -27,6 +30,7 @@ func TestLimit_GetHard(t *testing.T) {
 func TestLimit_GetSoft(t *testing.T) {
 	t.Run("Nil", func(t *testing.T) {
 		l := &Limit{
+			mu:   new(sync.Mutex),
 			soft: nil,
 		}
 		assert.EqualValues(t, 0, l.GetSoft())
@@ -34,6 +38,7 @@ func TestLimit_GetSoft(t *testing.T) {
 
 	t.Run("NotNil", func(t *testing.T) {
 		l := &Limit{
+			mu:   new(sync.Mutex),
 			soft: new(uint64),
 		}
 		*l.soft = 16
@@ -42,14 +47,14 @@ func TestLimit_GetSoft(t *testing.T) {
 }
 
 func TestLimit_SetHard(t *testing.T) {
-	l := &Limit{}
+	l := &Limit{mu: new(sync.Mutex)}
 	l.SetHard(64)
 	require.NotNil(t, l.hard)
 	assert.EqualValues(t, 64, *l.hard)
 }
 
 func TestLimit_SetSoft(t *testing.T) {
-	l := &Limit{}
+	l := &Limit{mu: new(sync.Mutex)}
 	l.SetSoft(64)
 	require.NotNil(t, l.soft)
 	assert.EqualValues(t, 64, *l.soft)

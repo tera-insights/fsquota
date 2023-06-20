@@ -2,6 +2,7 @@ package fsquota
 
 import (
 	"os"
+	"sync"
 	"syscall"
 	"unsafe"
 )
@@ -80,10 +81,12 @@ func (d dqblk) toInfo() (info *Info) {
 	info = &Info{
 		Limits: Limits{
 			Files: Limit{
+				mu:   new(sync.Mutex),
 				hard: &d.dqbIHardlimit,
 				soft: &d.dqbISoftlimit,
 			},
 			Bytes: Limit{
+				mu:   new(sync.Mutex),
 				hard: &d.dqbBHardlimit,
 				soft: &d.dqbBSoftlimit,
 			},

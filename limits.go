@@ -13,7 +13,7 @@ type Limits struct {
 
 // Limit represents a combined hard and soft limit
 type Limit struct {
-	mu   sync.Mutex
+	mu   *sync.Mutex
 	soft *uint64
 	hard *uint64
 }

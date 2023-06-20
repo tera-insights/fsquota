@@ -1,6 +1,7 @@
 package fsquota
 
 import (
+	"sync"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -17,6 +18,7 @@ func TestInfoIsEmpty(t *testing.T) {
 		i := Info{
 			Limits: Limits{
 				Bytes: Limit{
+					mu:   new(sync.Mutex),
 					soft: &l,
 				},
 			},
@@ -29,6 +31,7 @@ func TestInfoIsEmpty(t *testing.T) {
 		i := Info{
 			Limits: Limits{
 				Bytes: Limit{
+					mu:   new(sync.Mutex),
 					hard: &l,
 				},
 			},
@@ -48,6 +51,7 @@ func TestInfoIsEmpty(t *testing.T) {
 		i := Info{
 			Limits: Limits{
 				Files: Limit{
+					mu:   new(sync.Mutex),
 					soft: &l,
 				},
 			},
@@ -60,6 +64,7 @@ func TestInfoIsEmpty(t *testing.T) {
 		i := Info{
 			Limits: Limits{
 				Files: Limit{
+					mu:   new(sync.Mutex),
 					hard: &l,
 				},
 			},

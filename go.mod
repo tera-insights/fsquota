@@ -10,7 +10,7 @@ require (
 	github.com/speijnik/go-errortree v1.0.0
 	github.com/spf13/cobra v0.0.1
 	github.com/stretchr/testify v1.2.1
-	golang.org/x/sys v0.0.0-20220520151302-bc2c85ada10a
+	golang.org/x/sys v0.9.0
 )
 
 require (

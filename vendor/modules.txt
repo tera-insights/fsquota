@@ -4,7 +4,7 @@ github.com/anexia-it/fsquota
 # github.com/davecgh/go-spew v1.1.0
 ## explicit
 github.com/davecgh/go-spew/spew
-# github.com/docker/docker v1.13.1
+# github.com/docker/docker v20.10.24+incompatible
 ## explicit
 github.com/docker/docker/pkg/mount
 # github.com/dustin/go-humanize v0.0.0-20171111073723-bb3d318650d4
